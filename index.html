@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南越谷 クライミングジムバトル</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      animation: fadeOut 3s forwards 4s;
+    }
+    .overlay img {
+      width: 0;
+      height: auto;
+      animation: expandImage 3s forwards;
+    }
+    .start-button {
+      position: absolute;
+      bottom: 15%;
+      padding: 15px 30px;
+      background: #00adb5;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      animation: fadeIn 1.5s forwards 3s;
+    }
+    @keyframes expandImage {
+      from { width: 0; opacity: 0; }
+      to { width: 60%; opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; display: block; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
+    }
+    
+    .form_block {
+      margin-bottom: 15px;
+    }
+    .form_label {
+      font-size: 16px;
+    }
+    .form_field {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #bbb9b9;
+      font-size: 16px;
+    }
+    select.form_field {
+      cursor: pointer;
+    }
+    input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #00adb5;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    input[type="button"]:hover {
+      background: #00fff5;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <img src="セッターバトル.png" alt="Opening Image">
+  </div>
+  
+  <main class="contact_main">
+    <h1 class="contact_h1">南越谷<br> クライミングジムバトル</h1><br>
+    <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfYS5uPNnTnhtMPZ7PjghHm3SRUr_-muu4m0vgNsPjn8Vcx2A/formResponse" class="contact_form" method="post" target="hidden_iframe" id="googleform">
+      <label class="form_block">
+        <div class="form_label">氏名<span class="form-required">必須</span></div>
+        <input type="text" name="entry.832405450" class="form_field" placeholder="山田太郎" id="nameInput" required>
+      </label>
+      <div class="form_block">
+        <div class="form_label">場所<span class="form-required">必須</span></div>
+        <select name="entry.343946788" class="form_field">
+          <option value="ロックキューブ">ロックキューブ</option>
+          <option value="be born">be born</option>
+        </select>
+      </div>
+      <div class="form_block">
+        <div class="form_label">5級<span class="form-required">で面白い課題</span></div>
+        <select name="entry.733933119" class="form_field">
+          <option value=""></option>
+          <option value="１番">１番</option>
+          <option value="２番">２番</option>
+          <option value="３番">３番</option>
+        </select>
+      </div>
+      <div class="form_block">
+        <div class="form_label">4級<span class="form-required">で面白い課題</span></div>
+        <select name="entry.1512875008" class="form_field">
+          <option value=""></option>
+          <option value="１番">１番</option>
+          <option value="２番">２番</option>
+          <option value="３番">３番</option>
+        </select>
+      </div>
+      <input type="button" value="送信" id="googleform-submit">
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    </form>
+  </main>
+  
+  <script>
+    function startProgram() {
+      document.querySelector('.overlay').style.display = 'none';
+    }
+    document.getElementById('googleform-submit').addEventListener('click', function() {
+      const nameInput = document.getElementById('nameInput').value.trim();
+      if (nameInput === "") {
+        alert("氏名を入力してください。");
+      } else {
+        document.getElementById('googleform').submit();
+        setTimeout(() => { window.location = 'thanks.html'; }, 500);
+      }
+    });
+  </script>
+</body>
+</html>
